@@ -71,6 +71,7 @@ export default function Pricing() {
             textAlign: 'left',
             px: { xs: 0.5, sm: 2 },
             mb: 0.5,
+            letterSpacing: '0.01em',
           }}
         >
           料金プラン

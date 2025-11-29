@@ -10,5 +10,6 @@
 2. デプロイ: `npm run deploy`  
    - `gh-pages` パッケージ経由で `gh-pages` ブランチに公開用ファイルをプッシュします。
 3. 本体ブランチも更新: `git push origin main`（またはデフォルトブランチ名）
+4. 変更をコミットする場合: `git add . && git commit -m "Your message" && git push origin main`
 
-補足: `package.json` の `homepage` は `https://tetsujin47.github.io/smartjan_site/` に設定されています。公開URLを変更する場合は `homepage` も合わせて更新してください。
+補足: `package.json` の `homepage` は `https://www.smart-mahjong.com/` に設定されています。公開URLを変更する場合は `homepage` も合わせて更新してください。

@@ -1,128 +1,121 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 
 // カスタムスタイルを定義
 const HighlightedText = styled('span')({
-  color: '#0A66C2', // ここで指定したい色に変更
+  color: '#0A66C2',
+  fontWeight: 700,
 })
 
 const Welcome = () => {
   return (
     <>
       <Box
+        id="welcome"
         sx={{
-          width: '100%',
-          height: {
-            xs: '29vh', // Mobile devices
-            sm: '32vh', // Small screens
-            md: '50vh', // Medium screens
-            lg: '70vh', // Large screens
-            xl: '80vh', // Extra large screens
-          },
-          backgroundImage:
-            'url(https://tetsujin47.github.io/smartjan_site/titleimg.jpeg)',
-          backgroundSize: 'contain',
-          backgroundPosition: 'bottom',
-          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+          overflow: 'hidden',
+          background: `linear-gradient(180deg, rgba(3, 51, 99, 0.45) 0%, rgba(3, 51, 99, 0.25) 35%, rgba(0, 0, 0, 0.68) 75%, rgba(0, 0, 0, 0.8) 100%), url(${
+            process.env.PUBLIC_URL || ''
+          }/titleimg.jpeg)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          minHeight: { xs: '60vh', md: '70vh' },
           display: 'flex',
-          position: 'relative', // 相対位置指定を有効化
-          overflow: 'hidden', // 画像が縦長にならないようにオーバーフローを隠す
-          id: 'welcome',
-          mt: 10, // 上部にマージンを追加
-          // backgroundColor: '#971b1b', // 薄暗いグレーの背景色
-          '@media (max-width: 600px)': {
-            mt: 9, // 600px未満の場合のテキストと画像の間のスペース
-          },
+          alignItems: 'flex-end',
+          pb: { xs: 2, md: 3 },
         }}
       >
-        <Typography
-          variant="h1"
-          sx={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translate(-50%, -50%)', // 中心に表示するための変換
-            color: 'rgba(239, 231, 231, 0.915)', // 文字色を白に近い柔らかい色に設定
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // ぼかし効果を追加
-            lineHeight: 1.4, // 行間を設定
-            whiteSpace: 'nowrap', // スケールが変更されても勝手に改行されないようにする
-            justifyContent: 'center',
-            display: 'flex',
-            alignItems: 'center',
-            bottom: {
-              xs: '-16%', // モバイルデバイス（小さい画面）
-              sm: '-10%', // スモールサイズの画面
-              md: '-10%', // ミディアムサイズの画面
-              lg: '-8%', // ラージサイズの画面
-              xl: '-5%', // ラージサイズの画面
-            },
-            fontSize: {
-              xs: '1rem', // モバイルデバイス（小さい画面）
-              sm: '1.5rem', // スモールサイズの画面
-              md: '2.5rem', // ミディアムサイズの画面
-              lg: '3rem', // ラージサイズの画面
-              xl: '3.5rem', // ラージサイズの画面
-            },
-          }}
-        >
-          スマホのカメラで
-          <br />
-          麻雀点数計算が簡単に
-          <br />
-          符計算にも便利
-        </Typography>
+        <Container maxWidth="lg" sx={{ pb: { xs: 0, md: 0 } }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: { xs: 1.25, md: 1.5 },
+              maxWidth: 720,
+              color: '#fff',
+              textShadow: '0 4px 12px rgba(0,0,0,0.45)',
+              textAlign: 'left',
+              mx: 'auto',
+              px: { xs: 2.5, md: 3 },
+              py: { xs: 2.5, md: 3 },
+              borderRadius: 3,
+              backgroundColor: 'rgba(0,0,0,0.2)',
+              backdropFilter: 'blur(3px)',
+              border: '1px solid rgba(255,255,255,0.12)',
+            }}
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                lineHeight: 1.3,
+                fontSize: { xs: '2.2rem', md: '2.8rem' },
+                fontWeight: 800,
+              }}
+            >
+              スマホのカメラで
+              <br />
+              麻雀点数計算が簡単に
+              <br />
+              <HighlightedText>スマート雀</HighlightedText>は符計算にも便利
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: '1rem', md: '1.1rem' },
+                color: 'rgba(255,255,255,0.95)',
+              }}
+            >
+              麻雀点数計算をスマホだけで完結。牌の読み取りからリーチ／鳴き設定、符計算までワンストップでこなす使いやすいアプリです。
+            </Typography>
+          </Box>
+        </Container>
       </Box>
+
       <Box
         sx={{
-          width: '100%', // ボックスの幅を指定
-          // padding: '10px', // 内側の余白を指定
-          backgroundColor: '#f0f0f0', // ボックスの背景色を指定
-          display: 'flex',
-          gap: '16px', // テキストと画像の間にスペースを追加
-          alignItems: 'center', // 垂直方向の中央揃え
-          justifyContent: 'center', // 水平方向の中央揃え
-          '@media (min-width: 600px)': {
-            flexDirection: 'row', // 600px以上の場合にボックス内のアイテムを横に並べる
-          },
+          bgcolor: '#f6f6f6',
+          borderTop: '1px solid #e2e2e2',
+          px: { xs: 2, sm: 3 },
+          py: { xs: 3, sm: 4 },
         }}
       >
-        <Typography
-          variant="body1"
-          color="text.primary"
+        <Container
+          maxWidth="lg"
           sx={{
-            fontWeight: 'bold',
-            fontSize: '1.5rem', // 文字サイズを大きくする
-            textAlign: 'center', // テキストを中央揃え
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            '@media (max-width: 600px)': {
-              fontSize: '0.8rem', // スマホサイズの文字サイズ
-            },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: { xs: 1.5, sm: 2.25 },
           }}
         >
-          いますぐ<HighlightedText>スマート雀</HighlightedText>をダウンロード
-          <HighlightedText>＞＞</HighlightedText>
-        </Typography>
-        <div>
-          <a
+          <Typography
+            variant="body1"
+            sx={{
+              fontWeight: 800,
+              textAlign: 'center',
+              fontSize: { xs: '1.2rem', sm: '1.3rem' },
+            }}
+          >
+            いますぐ <HighlightedText>スマート雀</HighlightedText> をダウンロード ＞＞
+          </Typography>
+          <Box
+            component="a"
             href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E9%9B%80/id1621669217"
             target="_blank"
             rel="noopener noreferrer"
-          >
-            <Box
-              sx={{
-                width: '150px', // 画像の幅を設定
-                height: '80px', // 画像の高さを設定
-                backgroundImage:
-                  'url(https://tetsujin47.github.io/smartjan_site/get_from_appstore.jpeg)', // クリック可能な画像のURL
-                backgroundSize: 'contain', // 画像をコンテナ内に収める
-                backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-                backgroundPosition: 'center',
-                '@media (max-width: 600px)': {
-                  width: '100px', // 画像の幅を設定
-                },
-              }}
-            />
-          </a>
-        </div>
+            sx={{
+              display: 'block',
+              width: { xs: 140, sm: 180 },
+              height: { xs: 45, sm: 52 },
+              backgroundImage: `url(${process.env.PUBLIC_URL || ''}/get_from_appstore.jpeg)`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
+          />
+        </Container>
       </Box>
     </>
   )

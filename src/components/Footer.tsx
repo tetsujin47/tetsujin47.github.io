@@ -75,7 +75,7 @@ export default function Footer() {
               color="text.secondary"
               onClick={() => scrollToSection('pricing')}
             >
-              料金
+              料金プラン
             </Link>
             <Link color="text.secondary" onClick={() => scrollToSection('faq')}>
               よくある質問

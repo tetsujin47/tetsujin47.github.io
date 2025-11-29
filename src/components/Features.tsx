@@ -1,183 +1,174 @@
-import {
-  Box,
-  Typography,
-  Container,
-  Paper,
-  StepLabel,
-  Stepper,
-  Step,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
 import { styled } from '@mui/system'
-import CircleIcon from '@mui/icons-material/Circle'
-// カスタムスタイルを定義
+
 const HighlightedText = styled('span')({
-  color: 'rgba(37, 40, 221, 0.9)', // ここで指定したい色に変更
+  color: '#0A66C2',
+  fontWeight: 800,
 })
 
-const steps = ['STEP1', 'STEP2', 'STEP3']
+const imageBase = process.env.PUBLIC_URL || ''
 
-const descriptions = [
-  '「カメラ」アイコンをタップしてカメラを起動します。',
-  'あがり牌をカメラで読み込みます。',
-  '必要に応じて役設定(リーチ役やチー・ポン・カンなど)を行うと点数結果が表示されます。',
+const steps = [
+  {
+    label: 'STEP 1',
+    title: 'カメラを起動',
+    description: '「カメラ」アイコンをタップして\n撮影画面を開きます。',
+    image: `${imageBase}/STEP1.jpeg`,
+  },
+  {
+    label: 'STEP 2',
+    title: '牌を読み取る',
+    description: 'あがり牌をカメラで読み込むと\n牌情報が自動で反映されます。',
+    image: `${imageBase}/STEP2.jpeg`,
+  },
+  {
+    label: 'STEP 3',
+    title: '役を設定して計算',
+    description:
+      'リーチやチー・ポン・カンなどを設定\n点数・飜・符をすぐ表示します。',
+    image: `${imageBase}/STEP3.jpeg`,
+  },
 ]
 
-const images = [
-  'STEP1.jpeg', // STEP1の画像
-  'STEP2.jpeg', // STEP2の画像
-  'STEP3.jpeg', // STEP3の画像
+const highlights = [
+  '点数と一緒に飜／符を表示し、学習にも最適',
+  '3人／4人麻雀どちらでも利用可能',
+  'シンプルなUIで実戦中でも迷わない操作性',
 ]
-
-const CustomStepIcon: React.FC = () => {
-  
-  return <CircleIcon style={{ color: '#0A66C2' }} sx={{
-
-    '@media (max-width: 600px)': {
-          fontSize :'small', // 文字サイズを大きくする
-    }
-  }
-  } />;
-};
 
 const Features = () => {
   return (
-    <>
-      <Container
-        fixed
-        id="features"
-        sx={{ pt: { xs: 4, sm: 12 }, pb: { xs: 4, sm: 12 } }}
-      >
+    <Container
+      fixed
+      id="features"
+      sx={{
+        pt: { xs: 3.5, sm: 9 },
+        pb: { xs: 5.5, sm: 10 },
+      }}
+    >
+      <Box sx={{ textAlign: 'left', mb: { xs: 3, sm: 4 } }}>
+        <Chip
+          label="使い方はシンプルな3ステップ"
+          color="default"
+          sx={{ mb: 1.5, fontWeight: 700, bgcolor: 'rgba(10,102,194,0.08)' }}
+        />
         <Typography
-          variant="h1"
-          color="text.primary"
-          sx={{
-            fontWeight: 'bold',
-            fontSize: '2rem', // 文字サイズを大きくする
-            textAlign: 'left', // テキストを中央揃え
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            // paddingTop: '40px', // 上側に余白を追加
-            paddingRight: '16px', // 右側に余白を追加
-            // paddingBottom: '0px', // 下側には余白を追加しない
-            paddingLeft: '16px', // 左側に余白を追加
-            '@media (max-width: 600px)': {
-              fontSize: '24px', // 文字サイズを大きくする
-            },
-          }}
+          variant="h4"
+          sx={{ fontWeight: 800, mb: 0.5, fontSize: { xs: '1.8rem', md: '2rem' } }}
         >
-          スマート雀とは？
+          <HighlightedText>スマート雀</HighlightedText>とは？
         </Typography>
         <Typography
           variant="body1"
-          color="text.primary"
-          sx={{
-            fontWeight: 'bold',
-            textAlign: 'left', // テキストを中央揃え
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            paddingTop: '0px', // 上側に余白を追加
-            paddingRight: '16px', // 右側に余白を追加
-            paddingBottom: '16px', // 下側には余白を追加
-            paddingLeft: '16px', // 左側に余白を追加
-            '@media (max-width: 600px)': {
-              fontSize: '10px', // 文字サイズを大きくする
-            },
-          }}
+          color="text.secondary"
+          sx={{ mt: 1, lineHeight: 1.8, letterSpacing: '0.01em' }}
         >
-          <HighlightedText>What is Smart Jan</HighlightedText>
+          スマート雀はカメラで牌を瞬時に読み取り、簡単な操作で麻雀点数計算できるアプリです。 また、点数計算結果とともに役名や飜・符が表示され計算の学習に役立てることができます。
         </Typography>
-        <Typography
-          variant="h6"
-          color="text.primary"
-          sx={{
-            fontWeight: 'bold',
-            textAlign: 'left', // テキストを中央揃え
-            // fontSize: '1.5rem', // 文字サイズを大きくする
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            paddingTop: '0px', // 上側に余白を追加
-            paddingRight: '16px', // 右側に余白を追加
-            paddingBottom: { xs: 0, sm: 4 }, // 下側には余白を追加
-            paddingLeft: '16px', // 左側に余白を追加
-            '@media (max-width: 600px)': {
-              fontSize: '12px', // 文字サイズを大きくする
-              fontWeight: 'normal',
-            },
-          }}
-        >
-          スマート雀はカメラで牌を瞬時に読み取り、簡単な操作で麻雀点数計算できるアプリです。
-          <br />
-          また、点数計算結果とともに役名や飜・符が表示され計算の学習に役立てることができます。
-        </Typography>
-        <Box
-          sx={{
-            width: '100%',
-            maxWidth: 600,
-            margin: 'auto',
-            mt: 5,
-            padding: 1,
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 1.25 }}>
+          {highlights.map((item) => (
+            <Box
+              key={item}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+                color: 'text.primary',
+              }}
+            >
+              <CheckCircleRoundedIcon
+                sx={{ color: 'primary.main', fontSize: 22, flexShrink: 0 }}
+              />
+              <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                {item}
+              </Typography>
+            </Box>
+            ))}
+        </Box>
+      </Box>
 
-            '@media (max-width: 600px)': {
-              maxWidth: 300,
-              margin: 'auto',
-              mt: 1,
-              padding: 1,
-            },
-          }}
-        >
-          <Stepper activeStep={-1} orientation="vertical">
-            {steps.map((label, index) => (
-              <Step key={label} completed>
-                <StepLabel
-                  StepIconComponent={CustomStepIcon}
+      <Paper
+        variant="outlined"
+        sx={{
+          p: { xs: 2.75, md: 4.5 },
+          borderRadius: 4,
+          background:
+            'linear-gradient(135deg, rgba(10, 102, 194, 0.06) 0%, rgba(255, 255, 255, 0.9) 70%)',
+        }}
+      >
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 1.5, md: 2 } }}>
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="stretch"
+          >
+            {steps.map((step) => (
+              <Grid item xs={12} sm={6} md={4} key={step.label}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 2.25,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: 3,
+                    bgcolor: 'background.paper',
+                    border: '1px solid rgba(10,102,194,0.12)',
+                    boxShadow: '0 12px 24px rgba(10,102,194,0.08)',
+                    width: '100%',
+                    mx: 'auto',
+                  }}
+                  component="article"
                 >
                   <Typography
-                    variant="body1"
+                    variant="overline"
                     sx={{
-                      fontWeight: 'bold',
-                      '@media (max-width: 600px)': { fontSize: '12px' },
+                      fontWeight: 800,
+                      letterSpacing: '0.08em',
+                      color: 'primary.main',
                     }}
                   >
-                    {label}
+                    {step.label}
                   </Typography>
-                </StepLabel>
-                <Paper
-                  elevation={3}
-                  sx={{
-                    padding: 1,
-                    marginTop: 1,
-                    marginBottom: 1,
-                    '@media (max-width: 600px)': {
-                      padding: 0.5,
-                      marginTop: 0.5,
-                      marginBottom: 0.5,
-                    },
-                  }}
-                >
-                  <img
-                    src={images[index]}
-                    alt={`${label} image`}
-                    style={{
-                      width: '80%',
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+                    {step.title}
+                  </Typography>
+                  <Box
+                    component="img"
+                    src={step.image}
+                    alt={`${step.label} image`}
+                    sx={{
+                      width: { xs: '90%', sm: '80%' },
+                      maxWidth: 320,
                       height: 'auto',
-                      display: 'block',
-                      margin: '0 auto 10px auto',
+                      borderRadius: 2,
+                      objectFit: 'contain',
+                      mb: 1.5,
+                      border: '1px solid rgba(10,102,194,0.1)',
+                      mx: 'auto',
                     }}
                   />
                   <Typography
                     variant="body2"
-                    sx={{
-                      '@media (max-width: 600px)': {
-                        fontSize: '12px',
-                      },
-                    }}
+                    color="text.secondary"
+                    sx={{ whiteSpace: 'pre-line' }}
                   >
-                    {descriptions[index]}
+                    {step.description}
                   </Typography>
                 </Paper>
-              </Step>
+              </Grid>
             ))}
-          </Stepper>
+          </Grid>
         </Box>
-      </Container>
-    </>
+      </Paper>
+    </Container>
   )
 }
 

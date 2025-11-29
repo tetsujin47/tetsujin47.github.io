@@ -1,19 +1,14 @@
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
-import Chip from '@mui/material/Chip'
 import CardContent from '@mui/material/CardContent'
+import Chip from '@mui/material/Chip'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
-import { styled } from '@mui/system'
-
-// カスタムスタイルを定義
-const HighlightedText = styled('span')({
-  color: 'rgba(37, 40, 221, 0.9)', // ここで指定したい色に変更
-})
 
 const tiers = [
   {
@@ -23,8 +18,10 @@ const tiers = [
       'カメラで麻雀牌自動読み取り',
       '詳細な点数計算設定',
       '符計算結果表示',
-      '3人及び4人麻雀に対応',
+      '3人／4人麻雀に対応',
     ],
+    cta: '無料で使う',
+    highlighted: false,
   },
   {
     title: 'プレミアム',
@@ -34,11 +31,11 @@ const tiers = [
       'カメラで麻雀牌自動読み取り',
       '詳細な点数計算設定',
       '符計算結果表示',
-      '3人及び4人麻雀に対応',
+      '3人／4人麻雀に対応',
       '広告非表示機能',
     ],
-    buttonText: 'Start now',
-    buttonVariant: 'contained',
+    cta: '広告なしで使う',
+    highlighted: true,
   },
 ]
 
@@ -48,68 +45,52 @@ export default function Pricing() {
       fixed
       id="pricing"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 4, sm: 12 },
+        pt: { xs: 6, sm: 12 },
+        pb: { xs: 6, sm: 12 },
         display: 'flex',
         flexDirection: 'column',
+        gap: 3,
       }}
     >
-      <Box
-        sx={{
-          textAlign: 'left',
-        }}
-      >
+      <Box sx={{ textAlign: 'left' }}>
+        <Chip
+          label="選べる2つのプラン"
+          sx={{
+            mb: 2,
+            fontWeight: 700,
+            bgcolor: 'rgba(10, 102, 194, 0.08)',
+          }}
+        />
         <Typography
           component="h2"
           variant="h4"
           color="text.primary"
           sx={{
-            fontWeight: 'bold',
-            fontSize: { xs: '24px', sm: '2rem' }, // 文字サイズを大きくする
+            fontWeight: 800,
+            fontSize: { xs: '1.8rem', sm: '2rem' },
             textAlign: 'left',
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            paddingRight: '16px', // 右側に余白を追加
-            paddingLeft: '16px', // 左側に余白を追加
+            px: { xs: 0.5, sm: 2 },
+            mb: 0.5,
           }}
         >
-          選べる２つの料金プラン
+          料金プラン
         </Typography>
         <Typography
           variant="body1"
-          color="text.primary"
+          color="text.secondary"
           sx={{
-            fontWeight: 'bold',
-            textAlign: 'left', // テキストを中央揃え
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            paddingBottom: '16px', // 下側には余白を追加しない
-            paddingRight: '16px', // 右側に余白を追加
-            paddingLeft: '16px', // 左側に余白を追加
-            '@media (max-width: 600px)': {
-              fontSize: '10px',
-            },
+            textAlign: 'left',
+            px: { xs: 0.5, sm: 2 },
+            pb: 1.75,
+            lineHeight: 1.8,
+            letterSpacing: '0.01em',
           }}
         >
-          <HighlightedText>There are 2plans to Choosed</HighlightedText>
-        </Typography>
-        <Typography
-          variant="h6"
-          color="text.primary"
-          sx={{
-            textAlign: 'left', // テキストを中央揃え
-            fontWeight: { xs: 'normal', sm: 'bold' },
-            backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-            paddingBottom: { xs: '12px', sm: '32px' }, // 下側には余白を追加しない
-            paddingRight: '16px', // 右側に余白を追加
-            paddingLeft: '16px', // 左側に余白を追加
-            '@media (max-width: 600px)': {
-              fontSize: '12px',
-            },
-          }}
-        >
-          スマート雀では2つのプランからご自身に合ったプランをお選びいただけます。
+          無料のスタンダードから始め、広告なしで集中したいときはプレミアムへ。使い方に合わせてお選びください。
         </Typography>
       </Box>
-      <Grid container spacing={3} alignItems="center" justifyContent="center">
+
+      <Grid container spacing={3} alignItems="stretch" justifyContent="center">
         {tiers.map((tier) => (
           <Grid
             item
@@ -121,7 +102,7 @@ export default function Pricing() {
               '@media (max-width: 600px)': {
                 mx: '12px',
               },
-            }} // Adding horizontal margin
+            }}
           >
             <Card
               sx={{
@@ -129,42 +110,42 @@ export default function Pricing() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
-                border: tier.title === 'プレミアム' ? '1px solid' : undefined,
-                borderColor:
-                  tier.title === 'プレミアム' ? 'primary.main' : undefined,
-                background:
-                  tier.title === 'プレミアム'
-                    ? 'linear-gradient(#033363, #021F3B)'
-                    : undefined,
+                height: '100%',
+                border: tier.highlighted ? '1px solid' : undefined,
+                borderColor: tier.highlighted ? 'primary.main' : undefined,
+                background: tier.highlighted
+                  ? 'linear-gradient(#033363, #021F3B)'
+                  : undefined,
+                color: tier.highlighted ? 'grey.100' : 'inherit',
+                position: 'relative',
               }}
             >
-              <CardContent>
+              <CardContent sx={{ pb: 0, flexGrow: 1 }}>
                 <Box
                   sx={{
                     mb: 1,
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    color: tier.title === 'プレミアム' ? 'grey.100' : '',
                   }}
                 >
                   <Typography component="h3" variant="h6">
                     {tier.title}
                   </Typography>
-                  {tier.title === 'プレミアム' && (
+                  {tier.subheader && (
                     <Chip
                       icon={<AutoAwesomeIcon />}
                       label={tier.subheader}
                       size="small"
                       sx={{
-                        background: (theme) =>
-                          theme.palette.mode === 'light' ? '' : 'none',
-                        backgroundColor: 'primary.contrastText',
+                        backgroundColor: tier.highlighted
+                          ? 'primary.contrastText'
+                          : 'primary.50',
                         '& .MuiChip-label': {
-                          color: 'primary.dark',
+                          color: tier.highlighted ? 'primary.dark' : 'primary.main',
                         },
                         '& .MuiChip-icon': {
-                          color: 'primary.dark',
+                          color: tier.highlighted ? 'primary.dark' : 'primary.main',
                         },
                       }}
                     />
@@ -174,35 +155,9 @@ export default function Pricing() {
                   sx={{
                     display: 'flex',
                     alignItems: 'baseline',
-                    color: tier.title === 'プレミアム' ? 'grey.50' : undefined,
                   }}
                 >
-                  {tier.title === 'プレミアム' ? (
-                    <>
-                      <Typography
-                        component="h3"
-                        variant="h6"
-                        sx={{
-                          '@media (max-width: 600px)': {
-                            fontSize: '16px',
-                          },
-                        }}
-                      >
-                        月額&nbsp;
-                      </Typography>
-                      <Typography
-                        component="h3"
-                        variant="h2"
-                        sx={{
-                          '@media (max-width: 600px)': {
-                            fontSize: '24px',
-                          },
-                        }}
-                      >
-                        {tier.price}円
-                      </Typography>
-                    </>
-                  ) : (
+                  {tier.price === '0' ? (
                     <Typography
                       component="h3"
                       variant="h6"
@@ -214,13 +169,40 @@ export default function Pricing() {
                     >
                       月額無料
                     </Typography>
+                  ) : (
+                    <>
+                      <Typography
+                        component="h3"
+                        variant="h6"
+                        sx={{
+                          '@media (max-width: 600px)': {
+                            fontSize: '16px',
+                          },
+                          color: tier.highlighted ? 'grey.100' : undefined,
+                        }}
+                      >
+                        月額&nbsp;
+                      </Typography>
+                      <Typography
+                        component="h3"
+                        variant="h2"
+                        sx={{
+                          '@media (max-width: 600px)': {
+                            fontSize: '24px',
+                          },
+                          color: tier.highlighted ? 'grey.50' : undefined,
+                        }}
+                      >
+                        {tier.price}円
+                      </Typography>
+                    </>
                   )}
                 </Box>
                 <Divider
                   sx={{
                     my: 2,
-                    opacity: 0.2,
-                    borderColor: 'grey.500',
+                    opacity: tier.highlighted ? 0.35 : 0.2,
+                    borderColor: tier.highlighted ? 'grey.200' : 'grey.500',
                   }}
                 />
                 {tier.description.map((line) => (
@@ -236,24 +218,19 @@ export default function Pricing() {
                     <CheckCircleRoundedIcon
                       sx={{
                         width: 20,
-                        color:
-                          tier.title === 'プレミアム'
-                            ? 'primary.light'
-                            : 'primary.main',
+                        color: tier.highlighted ? 'primary.light' : 'primary.main',
                       }}
                     />
                     <Typography
-                      component="text"
+                      component="span"
                       variant="subtitle2"
                       sx={{
-                        color:
-                          tier.title === 'プレミアム' ? 'grey.200' : undefined,
-                        fontWeight:
-                          line === '広告非表示機能' ? '900' : 'normal', // 条件に基づいて太字に設定
+                        color: tier.highlighted ? 'grey.200' : undefined,
+                        fontWeight: line === '広告非表示機能' ? '900' : 'normal',
                         fontSize:
                           line === '広告非表示機能'
-                            ? { xs: '20px', sm: '1.5rem' }
-                            : { xs: '14px', sm: '1rem' }, // 条件に基づいてフォントサイズを変更
+                            ? { xs: '20px', sm: '1.3rem' }
+                            : { xs: '14px', sm: '1rem' },
                       }}
                     >
                       {line}
@@ -261,10 +238,45 @@ export default function Pricing() {
                   </Box>
                 ))}
               </CardContent>
+              <Box sx={{ px: 2, pb: 3 }}>
+                <Button
+                  fullWidth
+                  color="primary"
+                  variant={tier.highlighted ? 'outlined' : 'contained'}
+                  component="a"
+                  href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E9%9B%80/id1621669217"
+                  target="_blank"
+                  sx={{
+                    fontWeight: 700,
+                    color: tier.highlighted ? 'grey.100' : undefined,
+                    borderColor: tier.highlighted ? 'rgba(255,255,255,0.5)' : undefined,
+                    backgroundColor: tier.highlighted
+                      ? 'rgba(255,255,255,0.08)'
+                      : undefined,
+                  }}
+                >
+                  {tier.cta}
+                </Button>
+              </Box>
             </Card>
           </Grid>
         ))}
       </Grid>
+
+      <Box
+        sx={{
+          mt: 2,
+          px: { xs: 2, sm: 3 },
+          py: 2,
+          borderRadius: 2,
+          bgcolor: 'rgba(10, 102, 194, 0.06)',
+          border: '1px solid rgba(10, 102, 194, 0.1)',
+        }}
+      >
+        <Typography variant="body2" color="text.secondary">
+          プレミアムでは広告が非表示になり、計算画面に集中できます。まずはスタンダードで体験し、必要に応じてアップグレードしてください。
+        </Typography>
+      </Box>
     </Container>
   )
 }

@@ -27,14 +27,10 @@ function AppAppBar() {
 
   const scrollToSection = (sectionId: string) => {
     const sectionElement = document.getElementById(sectionId)
-    const offset = 128
+    const offset = 80
     if (sectionElement) {
       const targetScroll = sectionElement.offsetTop - offset
-      sectionElement.scrollIntoView({ behavior: 'smooth' })
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth',
-      })
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' })
       setOpen(false)
     }
   }
@@ -74,7 +70,6 @@ function AppAppBar() {
             })}
           >
             <Box
-              onClick={() => scrollToSection('welcome')}
               sx={{
                 flexGrow: 1,
                 display: 'flex',
@@ -84,14 +79,16 @@ function AppAppBar() {
               }}
             >
               <img
-                src={'favicon.ico'}
+                src={`${process.env.PUBLIC_URL || ''}/favicon.ico`}
                 style={logoStyle}
                 alt="logo of smartjan"
+                onClick={() => scrollToSection('welcome')}
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
+                  component="button"
                   onClick={() => scrollToSection('features')}
-                  sx={{ py: '6px', px: '12px' }}
+                  sx={{ py: '6px', px: '12px', cursor: 'pointer' }}
                 >
                   <Typography
                     variant="body2"
@@ -118,8 +115,9 @@ function AppAppBar() {
                   </Typography>
                 </MenuItem> */}
                 <MenuItem
+                  component="button"
                   onClick={() => scrollToSection('pricing')}
-                  sx={{ py: '6px', px: '12px' }}
+                  sx={{ py: '6px', px: '12px', cursor: 'pointer' }}
                 >
                   <Typography
                     variant="body2"
@@ -128,12 +126,13 @@ function AppAppBar() {
                       fontWeight: 'bold',
                     }}
                   >
-                    料金
+                    料金プラン
                   </Typography>
                 </MenuItem>
                 <MenuItem
+                  component="button"
                   onClick={() => scrollToSection('faq')}
-                  sx={{ py: '6px', px: '12px' }}
+                  sx={{ py: '6px', px: '12px', cursor: 'pointer' }}
                 >
                   <Typography
                     variant="body2"
@@ -205,22 +204,22 @@ function AppAppBar() {
                 >
                   <Box
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'end',
-                      flexGrow: 1,
-                    }}
-                  ></Box>
-                  <MenuItem onClick={() => scrollToSection('features')}>
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'end',
+                  flexGrow: 1,
+                }}
+              ></Box>
+                  <MenuItem component="button" onClick={() => scrollToSection('features')}>
                     スマート雀とは
                   </MenuItem>
                   {/* <MenuItem onClick={() => scrollToSection('howtouse')}>
                     HowToUse
                   </MenuItem> */}
-                  <MenuItem onClick={() => scrollToSection('pricing')}>
+                  <MenuItem component="button" onClick={() => scrollToSection('pricing')}>
                     料金
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('faq')}>
+                  <MenuItem component="button" onClick={() => scrollToSection('faq')}>
                     よくある質問
                   </MenuItem>
                   {/* <MenuItem onClick={() => scrollToSection('news')}>

@@ -4,9 +4,9 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
+import Chip from '@mui/material/Chip'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import { styled } from '@mui/system'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Button } from '@mui/material'
 
@@ -17,11 +17,6 @@ export default function FAQ() {
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false)
     }
-
-  // カスタムスタイルを定義
-  const HighlightedText = styled('span')({
-    color: 'rgba(37, 40, 221, 0.9)', // ここで指定したい色に変更
-  })
 
   return (
     <Container
@@ -37,44 +32,45 @@ export default function FAQ() {
         // gap: { xs: 3, sm: 6 },
       }}
     >
+      <Chip
+        label="FAQ"
+        sx={{
+          mb: 2,
+          fontWeight: 700,
+          bgcolor: 'rgba(10, 102, 194, 0.08)',
+        }}
+      />
       <Typography
         component="h2"
         variant="h4"
         color="text.primary"
-        // sx={{
-        //   width: { sm: '100%', md: '60%' },
-        //   textAlign: { sm: 'left', md: 'center' },
-        // }}
         sx={{
-          fontWeight: 'bold',
-          fontSize: { xs: '20px', sm: '2rem' }, // 文字サイズを大きくする
-          textAlign: 'left', // テキストを中央揃え
-          backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-          // paddingTop: '60px', // 上側に余白を追加
-          paddingRight: '16px', // 右側に余白を追加
-          paddingBottom: '0px', // 下側には余白を追加しない
-          paddingLeft: '16px', // 左側に余白を追加
+          fontWeight: 800,
+          fontSize: { xs: '1.8rem', sm: '2rem' },
+          textAlign: 'left',
+          paddingRight: '16px',
+          paddingBottom: '8px',
+          paddingLeft: '16px',
         }}
       >
         スマート雀に関するよくある質問
       </Typography>
       <Typography
         variant="body1"
-        color="text.primary"
+        color="text.secondary"
         sx={{
-          fontWeight: 'bold',
-          textAlign: 'left', // テキストを中央揃え
-          backgroundRepeat: 'no-repeat', // 画像の繰り返しを防ぐ
-          paddingTop: '0px', // 上側に余白を追加
-          paddingRight: '16px', // 右側に余白を追加
-          paddingBottom: '24px', // 下側には余白を追加しない
-          paddingLeft: '16px', // 左側に余白を追加
+          textAlign: 'left',
+          backgroundRepeat: 'no-repeat',
+          paddingRight: '16px',
+          paddingBottom: '24px',
+          paddingLeft: '16px',
+          lineHeight: 1.7,
           '@media (max-width: 600px)': {
-            fontSize: '10px',
+            fontSize: '12px',
           },
         }}
       >
-        <HighlightedText>FAQ</HighlightedText>
+        使い方やプランに関する質問をまとめています。解決しない場合は、お気軽にお問い合わせください。
       </Typography>
       <Box sx={{ width: '100%', paddingBottom: '24px' }}>
         <Accordion
@@ -169,13 +165,16 @@ export default function FAQ() {
         sx={{
           width: '100%',
           paddingBottom: '24px',
-          display: 'flex', // フレックスボックスにする
-          flexDirection: 'column', // 垂直方向に並べる
-          justifyContent: 'center', // 水平方向の中央揃え
-          alignItems: 'center', // 垂直方向の中央揃え
-          backgroundColor: '#f0f0f0', // 薄暗いグレーの背景色
-          margin: '16px 0', // 上下の外側余白
-          borderRadius: '8px', // 少し丸みを追加
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background:
+            'linear-gradient(135deg, rgba(10, 102, 194, 0.08), rgba(10, 102, 194, 0.02))',
+          margin: '24px 0',
+          borderRadius: '16px',
+          border: '1px solid rgba(10,102,194,0.15)',
+          boxShadow: '0 12px 24px rgba(10,102,194,0.06)',
         }}
       >
         <Typography

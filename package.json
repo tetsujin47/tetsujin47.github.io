@@ -2,7 +2,7 @@
   "name": "smartjan_site",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tetsujin47.github.io/smartjan_site/",
+  "homepage": "https://www.smart-mahjong.com/",
   "dependencies": {
     "@emotion/react": "*",
     "@emotion/styled": "*",

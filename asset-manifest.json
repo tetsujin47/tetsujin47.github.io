@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.d5bc05e9.js",
-    "static/js/453.0b2754dc.chunk.js": "/static/js/453.0b2754dc.chunk.js",
-    "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.d5bc05e9.js.map": "/static/js/main.d5bc05e9.js.map",
-    "453.0b2754dc.chunk.js.map": "/static/js/453.0b2754dc.chunk.js.map"
+    "main.css": "/smartjan_site/static/css/main.e6c13ad2.css",
+    "main.js": "/smartjan_site/static/js/main.2f1c6ee8.js",
+    "static/js/453.0b2754dc.chunk.js": "/smartjan_site/static/js/453.0b2754dc.chunk.js",
+    "index.html": "/smartjan_site/index.html",
+    "main.e6c13ad2.css.map": "/smartjan_site/static/css/main.e6c13ad2.css.map",
+    "main.2f1c6ee8.js.map": "/smartjan_site/static/js/main.2f1c6ee8.js.map",
+    "453.0b2754dc.chunk.js.map": "/smartjan_site/static/js/453.0b2754dc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.d5bc05e9.js"
+    "static/js/main.2f1c6ee8.js"
   ]
 }

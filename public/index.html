@@ -1,40 +1,114 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WRBJZVXS');</script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-WRBJZVXS');
+    </script>
     <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-025K250HLP"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-025K250HLP"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', 'G-025K250HLP');
     </script>
     <meta charset="utf-8" />
-    <link rel="icon" href="favicon.ico" />
-    <!-- Robotoフォント読み込み -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
-    <!-- Noto Sans JPフォント読み込み -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>スマート雀</title>
+    <meta name="theme-color" content="#0F4C3A" />
+    <title>スマート雀｜スマホのカメラで麻雀点数・符計算をかんたんに</title>
+    <meta
+      name="description"
+      content="スマート雀は、スマホのカメラで麻雀牌を読み取るだけで点数・飜・符を瞬時に計算できるiOSアプリです。役や符の内訳も表示されるため、実戦中の確認から点数計算の学習まで幅広く使えます。"
+    />
+    <link rel="canonical" href="https://www.smart-mahjong.com/" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Open Graph / Twitter Card -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="スマート雀" />
+    <meta
+      property="og:title"
+      content="スマート雀｜スマホのカメラで麻雀点数・符計算をかんたんに"
+    />
+    <meta
+      property="og:description"
+      content="カメラで牌を読み取るだけで点数・飜・符をすぐ計算。役詳細・符詳細もひと目でわかる、3人・4人麻雀対応の点数計算アプリ。"
+    />
+    <meta property="og:url" content="https://www.smart-mahjong.com/" />
+    <meta
+      property="og:image"
+      content="https://www.smart-mahjong.com/titleimg.jpeg"
+    />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="スマート雀｜スマホのカメラで麻雀点数・符計算をかんたんに"
+    />
+    <meta
+      name="twitter:description"
+      content="カメラで牌を読み取るだけで点数・飜・符をすぐ計算。役詳細・符詳細もひと目でわかる麻雀点数計算アプリ。"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.smart-mahjong.com/titleimg.jpeg"
+    />
+
+    <!-- Fonts: Plus Jakarta Sans + Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "スマート雀",
+        "operatingSystem": "iOS",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://www.smart-mahjong.com/",
+        "downloadUrl": "https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E9%9B%80/id1621669217",
+        "description": "スマホのカメラで麻雀牌を自動読み取りし、点数・飜・符を素早く計算できる麻雀点数計算アプリ。",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "JPY"
+        }
+      }
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRBJZVXS"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WRBJZVXS"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
   </body>

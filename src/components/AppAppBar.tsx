@@ -1,251 +1,276 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
-import Typography from '@mui/material/Typography'
-import MenuItem from '@mui/material/MenuItem'
 import Drawer from '@mui/material/Drawer'
-import MenuIcon from '@mui/icons-material/Menu'
+import IconButton from '@mui/material/IconButton'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import { alpha } from '@mui/material/styles'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded'
+import { feltGreen, slateInk } from '../getLPTheme'
 
-const logoStyle = {
-  width: '40px',
-  height: 'auto',
-  cursor: 'pointer',
-  margin: '20px', // マージンを追加
-  borderRadius: '10%',
-}
+const APP_STORE_URL =
+  'https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E9%9B%80/id1621669217'
 
-function AppAppBar() {
-  const [open, setOpen] = React.useState(false)
+const navItems = [
+  { label: '特徴', id: 'features' },
+  { label: '使い方', id: 'howtouse' },
+  { label: '料金プラン', id: 'pricing' },
+  { label: 'よくある質問', id: 'faq' },
+]
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen)
-  }
+export default function AppAppBar() {
+  const [drawerOpen, setDrawerOpen] = React.useState(false)
+  const [scrolled, setScrolled] = React.useState(false)
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
-    const sectionElement = document.getElementById(sectionId)
-    const offset = 80
-    if (sectionElement) {
-      const targetScroll = sectionElement.offsetTop - offset
-      window.scrollTo({ top: targetScroll, behavior: 'smooth' })
-      setOpen(false)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offset = 84
+      const top =
+        element.getBoundingClientRect().top + window.pageYOffset - offset
+      window.scrollTo({ top, behavior: 'smooth' })
     }
+    setDrawerOpen(false)
   }
 
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        sx={{
-          boxShadow: 0,
-          bgcolor: 'transparent',
-          backgroundImage: 'none',
-          mt: 2,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Toolbar
-            variant="regular"
-            sx={(theme) => ({
-              display: 'flex',
+    <AppBar
+      position="fixed"
+      color="transparent"
+      elevation={0}
+      sx={{
+        py: { xs: 1, md: 1.25 },
+        transition: 'background-color 200ms ease, box-shadow 200ms ease',
+        bgcolor: scrolled ? alpha('#FFFFFF', 0.9) : alpha('#F7F8F5', 0.72),
+        backdropFilter: 'blur(14px)',
+        borderBottom: '1px solid',
+        borderColor: scrolled
+          ? alpha(feltGreen[600], 0.14)
+          : alpha(feltGreen[600], 0.06),
+        boxShadow: scrolled
+          ? `0 6px 24px ${alpha(slateInk[900], 0.06)}`
+          : 'none',
+      }}
+    >
+      <Container maxWidth="lg">
+        <Toolbar
+          disableGutters
+          sx={{
+            minHeight: { xs: 52, md: 58 },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 2,
+          }}
+        >
+          <Box
+            component="button"
+            type="button"
+            onClick={() => scrollToSection('welcome')}
+            aria-label="スマート雀 トップへ戻る"
+            sx={{
+              display: 'inline-flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              flexShrink: 0,
-              borderRadius: '999px',
-              bgcolor:
-                theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.4)'
-                  : 'rgba(0, 0, 0, 0.4)',
-              backdropFilter: 'blur(24px)',
-              maxHeight: 40,
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow:
-                theme.palette.mode === 'light'
-                  ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
-                  : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
-            })}
+              gap: 1.25,
+              border: 0,
+              p: 0.5,
+              bgcolor: 'transparent',
+              cursor: 'pointer',
+              color: 'text.primary',
+            }}
           >
             <Box
+              component="img"
+              src={`${process.env.PUBLIC_URL || ''}/favicon.ico`}
+              alt=""
               sx={{
-                flexGrow: 1,
-                display: 'flex',
-                alignItems: 'center',
-                ml: '-18px',
-                px: 0,
+                width: 34,
+                height: 34,
+                borderRadius: '10px',
+                boxShadow: `0 2px 8px ${alpha(slateInk[900], 0.14)}`,
               }}
-            >
-              <img
-                src={`${process.env.PUBLIC_URL || ''}/favicon.ico`}
-                style={logoStyle}
-                alt="logo of smartjan"
-                onClick={() => scrollToSection('welcome')}
-              />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem
-                  component="button"
-                  onClick={() => scrollToSection('features')}
-                  sx={{ py: '6px', px: '12px', cursor: 'pointer' }}
-                >
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    sx={{
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    スマート雀とは
-                  </Typography>
-                </MenuItem>
-                {/* <MenuItem
-                  onClick={() => scrollToSection('howtouse')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    sx={{
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    使い方
-                  </Typography>
-                </MenuItem> */}
-                <MenuItem
-                  component="button"
-                  onClick={() => scrollToSection('pricing')}
-                  sx={{ py: '6px', px: '12px', cursor: 'pointer' }}
-                >
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    sx={{
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    料金プラン
-                  </Typography>
-                </MenuItem>
-                <MenuItem
-                  component="button"
-                  onClick={() => scrollToSection('faq')}
-                  sx={{ py: '6px', px: '12px', cursor: 'pointer' }}
-                >
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    sx={{
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    よくある質問
-                  </Typography>
-                </MenuItem>
-                {/* <MenuItem
-                  onClick={() => scrollToSection('news')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    sx={{
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    お知らせ
-                  </Typography>
-                </MenuItem> */}
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: { xs: 'none', md: 'flex' },
-                gap: 0.5,
-                alignItems: 'center',
-              }}
-            >
-              <Button
-                color="primary"
-                variant="contained"
-                size="small"
-                component="a"
-                href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E9%9B%80/id1621669217"
-                target="_blank"
+            />
+            <Box sx={{ textAlign: 'left', lineHeight: 1.1 }}>
+              <Typography
+                component="span"
                 sx={{
-                  fontWeight: 'bold',
-                  borderRadius: '20px', // Adjust the value as needed
-                  padding: '20px 20px 20px 20px', // Adjust the values as needed for top/bottom and left/right padding
+                  display: 'block',
+                  fontWeight: 800,
+                  fontSize: '1.05rem',
+                  letterSpacing: '0.02em',
+                  color: feltGreen[700],
                 }}
               >
-                今すぐはじめる
-              </Button>
+                スマート雀
+              </Typography>
+              <Typography
+                component="span"
+                sx={{
+                  display: { xs: 'none', sm: 'block' },
+                  fontSize: '0.7rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.08em',
+                  color: 'text.secondary',
+                }}
+              >
+                SMART MAHJONG
+              </Typography>
             </Box>
-            <Box sx={{ display: { sm: '', md: 'none' } }}>
+          </Box>
+
+          <Box
+            component="nav"
+            aria-label="メインナビゲーション"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              gap: 0.5,
+            }}
+          >
+            {navItems.map((item) => (
               <Button
-                variant="text"
-                color="primary"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-                sx={{ minWidth: '30px', p: '4px' }}
-              >
-                <MenuIcon />
-              </Button>
-              <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-                <Box
-                  sx={{
-                    minWidth: '60dvw',
-                    p: 2,
-                    backgroundColor: 'background.paper',
-                    flexGrow: 1,
-                  }}
-                >
-                  <Box
-                    sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'end',
-                  flexGrow: 1,
+                key={item.id}
+                color="inherit"
+                onClick={() => scrollToSection(item.id)}
+                sx={{
+                  color: 'text.primary',
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  px: 2,
+                  py: 1,
+                  '&:hover': {
+                    color: feltGreen[600],
+                    bgcolor: alpha(feltGreen[600], 0.06),
+                  },
                 }}
-              ></Box>
-                  <MenuItem component="button" onClick={() => scrollToSection('features')}>
-                    スマート雀とは
-                  </MenuItem>
-                  {/* <MenuItem onClick={() => scrollToSection('howtouse')}>
-                    HowToUse
-                  </MenuItem> */}
-                  <MenuItem component="button" onClick={() => scrollToSection('pricing')}>
-                    料金
-                  </MenuItem>
-                  <MenuItem component="button" onClick={() => scrollToSection('faq')}>
-                    よくある質問
-                  </MenuItem>
-                  {/* <MenuItem onClick={() => scrollToSection('news')}>
-                    NEWS
-                  </MenuItem> */}
-                  <Divider />
-                  <MenuItem>
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      component="a"
-                      href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E9%9B%80/id1621669217"
-                      target="_blank"
-                      sx={{ width: '100%' }}
-                    >
-                      今すぐはじめる
-                    </Button>
-                  </MenuItem>
-                </Box>
-              </Drawer>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Box>
+
+          <Box
+            sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              component="a"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              endIcon={<OpenInNewRoundedIcon sx={{ fontSize: 16 }} />}
+              sx={{
+                px: 2.5,
+                py: 1,
+                fontSize: '0.9rem',
+              }}
+            >
+              App Storeで入手
+            </Button>
+          </Box>
+
+          <IconButton
+            aria-label="メニューを開く"
+            onClick={() => setDrawerOpen(true)}
+            sx={{
+              display: { xs: 'inline-flex', md: 'none' },
+              color: feltGreen[700],
+              border: `1px solid ${alpha(feltGreen[600], 0.18)}`,
+              borderRadius: '12px',
+            }}
+          >
+            <MenuRoundedIcon />
+          </IconButton>
+        </Toolbar>
+      </Container>
+
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{
+          sx: {
+            width: 'min(82vw, 320px)',
+            bgcolor: '#FFFFFF',
+            p: 2.5,
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            mb: 1.5,
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            sx={{ fontWeight: 800, color: feltGreen[700] }}
+          >
+            スマート雀
+          </Typography>
+          <IconButton
+            aria-label="メニューを閉じる"
+            onClick={() => setDrawerOpen(false)}
+          >
+            <CloseRoundedIcon />
+          </IconButton>
+        </Box>
+        <Divider sx={{ mb: 1.5 }} />
+        <List disablePadding>
+          {navItems.map((item) => (
+            <ListItemButton
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              sx={{
+                borderRadius: 2,
+                mb: 0.5,
+                '&:hover': { bgcolor: feltGreen[50] },
+              }}
+            >
+              <ListItemText
+                primary={item.label}
+                primaryTypographyProps={{
+                  fontWeight: 700,
+                  fontSize: '0.98rem',
+                }}
+              />
+            </ListItemButton>
+          ))}
+        </List>
+        <Divider sx={{ my: 2 }} />
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          component="a"
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          endIcon={<OpenInNewRoundedIcon sx={{ fontSize: 16 }} />}
+          sx={{ py: 1.3 }}
+        >
+          App Storeでダウンロード
+        </Button>
+      </Drawer>
+    </AppBar>
   )
 }
-
-export default AppAppBar
